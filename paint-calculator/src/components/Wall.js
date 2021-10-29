@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './wall.css';
 import { windowWidth, windowHeight, doorWidth, doorHeight } from '../utils';
 
 function Wall({ parede, addArea }) {
@@ -29,9 +30,9 @@ function Wall({ parede, addArea }) {
 
   function handleClick() {
     addArea(area);
-    // // setDisableForm(true);
-    // setDisabledDoor(true);
-    // setDisabledWindow(true);
+    setDisableForm(true);
+    setDisabledDoor(true);
+    setDisabledWindow(true);
   };
 
   function checkButton() {
@@ -57,7 +58,7 @@ function Wall({ parede, addArea }) {
   };
 
   function checkDoor() {
-    if (height < doorHeight + 0.3) {
+    if (height < doorHeight + 0.3 || !width) {
       setDisabledDoor(true);
     } else {
       setDisabledDoor(false);

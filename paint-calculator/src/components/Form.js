@@ -11,6 +11,7 @@ function Form({ parede, addArea }) {
   const [disableDoor, setDisabledDoor] = useState(true);
   const [disableWindow, setDisabledWindow] = useState(true);
   const [disableButton, setDisableButton] = useState(true);
+  const [disableForm, setDisableForm] = useState(false);
   const [area, setArea] = useState(0);
 
   function totalArea() {
@@ -24,6 +25,13 @@ function Form({ parede, addArea }) {
       setWarning(`O total de área das portas e janelas é de ${ Math.ceil(100 - proportion) }% e deve ser no máximo 50% da área de parede`);
     }
     setArea(finalArea);
+  }
+
+  function handleClick() {
+    addArea(area);
+    setDisableForm(true);
+    setDisabledDoor(true);
+    setDisabledWindow(true);
   }
 
   function checkButton() {
@@ -89,6 +97,7 @@ function Form({ parede, addArea }) {
             value = { height }
             onChange = { (e) => setHeight(e.target.value) }
             placeholder = 'metros'
+            disabled = { disableForm }
             required
           />
         </label>
@@ -101,6 +110,7 @@ function Form({ parede, addArea }) {
             value = { width }
             onChange = { (e) => setWidth(e.target.value) }
             placeholder = 'metros'
+            disabled = { disableForm }
             required
           />
         </label>
@@ -133,7 +143,7 @@ function Form({ parede, addArea }) {
         <button
           type='button'
           disabled = { disableButton }
-          onClick = { () => addArea(area) }
+          onClick = { handleClick }
         >
           Confirma
         </button>

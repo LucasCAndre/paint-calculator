@@ -88,7 +88,7 @@ function Form({ parede, addArea }) {
   
   return (
     <>
-      <h2>{ `parede${parede}` }</h2>
+      <h2>{ `Parede${parede}` }</h2>
       <form>
         <label>
           Altura (m)

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { windowWidth, windowHeight, doorWidth, doorHeight } from '../utils';
 
-function Form({ parede, addArea }) {
+function Wall({ parede, addArea }) {
   const [height, setHeight] = useState('');
   const [width, setWidth] = useState('');
   const [windows, setWindows] = useState(0);
@@ -29,9 +29,9 @@ function Form({ parede, addArea }) {
 
   function handleClick() {
     addArea(area);
-    setDisableForm(true);
-    setDisabledDoor(true);
-    setDisabledWindow(true);
+    // // setDisableForm(true);
+    // setDisabledDoor(true);
+    // setDisabledWindow(true);
   };
 
   function checkButton() {
@@ -83,7 +83,6 @@ function Form({ parede, addArea }) {
     checkHeight();
     checkWidth();
     totalArea();
-    console.log(totalArea());
   }, [height, width, doors, windows]);
   
   return (
@@ -153,4 +152,4 @@ function Form({ parede, addArea }) {
   );
 };
 
-export default Form;
+export default Wall;

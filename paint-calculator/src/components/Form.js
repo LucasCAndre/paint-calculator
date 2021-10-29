@@ -32,7 +32,7 @@ function Form({ parede, addArea }) {
     setDisableForm(true);
     setDisabledDoor(true);
     setDisabledWindow(true);
-  }
+  };
 
   function checkButton() {
     if (!hideWarning || area === 0) {
@@ -40,7 +40,7 @@ function Form({ parede, addArea }) {
     } else {
       setDisableButton(false);
     }
-  }
+  };
 
   function checkHeight() {
     if ((height > 15 || height < 1) && height !== '') {
@@ -54,7 +54,7 @@ function Form({ parede, addArea }) {
       setHideWarning(false);
       setWarning('Largura não pode ser menor que 1 ou maior que 15 metros!!');
     }
-  }
+  };
 
   function checkDoor() {
     if (height < doorHeight + 0.3) {
@@ -62,7 +62,7 @@ function Form({ parede, addArea }) {
     } else {
       setDisabledDoor(false);
     }
-  }
+  };
 
   function checkWindow() {
     if (width < windowWidth || width === '' || height < windowHeight || height === '') {
@@ -70,7 +70,7 @@ function Form({ parede, addArea }) {
     } else {
       setDisabledWindow(false);
     }
-  }
+  };
 
   useEffect(() => {
     checkButton();
@@ -145,12 +145,12 @@ function Form({ parede, addArea }) {
           disabled = { disableButton }
           onClick = { handleClick }
         >
-          Confirma
+        Confirma
         </button>
       </form>
       <span hidden = { hideWarning }>{ warning }</span>
     </>
   );
-}
+};
 
 export default Form;

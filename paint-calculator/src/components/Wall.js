@@ -90,7 +90,7 @@ function Wall({ parede, addArea }) {
   
   return (
     <div className="wall" >
-      <h2>{ `Parede${parede}` }</h2>
+      <h2>{ `Parede ${parede}` }</h2>
       <form>
         <label>
           Altura (m):

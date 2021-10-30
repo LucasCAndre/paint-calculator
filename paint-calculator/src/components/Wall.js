@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import './wall.css';
 import { windowWidth, windowHeight, doorWidth, doorHeight } from '../utils';
 
-function Form({ parede, addArea }) {
+function Wall({ parede, addArea }) {
   const [height, setHeight] = useState('');
   const [width, setWidth] = useState('');
   const [windows, setWindows] = useState(0);
@@ -11,6 +12,7 @@ function Form({ parede, addArea }) {
   const [disableDoor, setDisabledDoor] = useState(true);
   const [disableWindow, setDisabledWindow] = useState(true);
   const [disableButton, setDisableButton] = useState(true);
+  const [disableForm, setDisableForm] = useState(false);
   const [area, setArea] = useState(0);
 
   function totalArea() {
@@ -26,13 +28,20 @@ function Form({ parede, addArea }) {
     setArea(finalArea);
   }
 
+  function handleClick() {
+    addArea(area);
+    setDisableForm(true);
+    setDisabledDoor(true);
+    setDisabledWindow(true);
+  };
+
   function checkButton() {
     if (!hideWarning || area === 0) {
       setDisableButton(true);
     } else {
       setDisableButton(false);
     }
-  }
+  };
 
   function checkHeight() {
     if ((height > 15 || height < 1) && height !== '') {
@@ -46,15 +55,15 @@ function Form({ parede, addArea }) {
       setHideWarning(false);
       setWarning('Largura não pode ser menor que 1 ou maior que 15 metros!!');
     }
-  }
+  };
 
   function checkDoor() {
-    if (height < doorHeight + 0.3) {
+    if (height < doorHeight + 0.3 || !width) {
       setDisabledDoor(true);
     } else {
       setDisabledDoor(false);
     }
-  }
+  };
 
   function checkWindow() {
     if (width < windowWidth || width === '' || height < windowHeight || height === '') {
@@ -62,7 +71,7 @@ function Form({ parede, addArea }) {
     } else {
       setDisabledWindow(false);
     }
-  }
+  };
 
   useEffect(() => {
     checkButton();
@@ -75,12 +84,11 @@ function Form({ parede, addArea }) {
     checkHeight();
     checkWidth();
     totalArea();
-    console.log(totalArea());
   }, [height, width, doors, windows]);
   
   return (
     <>
-      <h2>{ `parede${parede}` }</h2>
+      <h2>{ `Parede${parede}` }</h2>
       <form>
         <label>
           Altura (m)
@@ -89,6 +97,7 @@ function Form({ parede, addArea }) {
             value = { height }
             onChange = { (e) => setHeight(e.target.value) }
             placeholder = 'metros'
+            disabled = { disableForm }
             required
           />
         </label>
@@ -101,6 +110,7 @@ function Form({ parede, addArea }) {
             value = { width }
             onChange = { (e) => setWidth(e.target.value) }
             placeholder = 'metros'
+            disabled = { disableForm }
             required
           />
         </label>
@@ -133,14 +143,14 @@ function Form({ parede, addArea }) {
         <button
           type='button'
           disabled = { disableButton }
-          onClick = { () => addArea(area) }
+          onClick = { handleClick }
         >
-          Confirma
+        Confirma
         </button>
       </form>
       <span hidden = { hideWarning }>{ warning }</span>
     </>
   );
-}
+};
 
-export default Form;
+export default Wall;

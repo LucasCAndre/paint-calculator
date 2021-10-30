@@ -1,19 +1,39 @@
-import React, { useState } from 'react';
-import Form from '../components/Form';
+import React, { useEffect, useState } from 'react';
+import './paintCalculator.css';
+import Sugestion from '../components/Sugestion';
+import Wall from '../components/Wall';
 
 function PaintCalculator() {
-  const [paintArea, setPaintArea] = useState(0);
+  const [areaOne, setAreaOne] = useState();
+  const [areaTwo, setAreaTwo] = useState();
+  const [areaThree, setAreaThree] = useState();
+  const [areaFour, setAreaFour] = useState();
+  const [sendSugestion, setSendSugestion] = useState(false);
 
-  function addArea(area) {
-    setPaintArea(paintArea + area);
-  };
+  const paintArea = areaOne + areaTwo + areaThree + areaFour;
+
+  useEffect(() => {
+    if (areaOne && areaTwo && areaThree && areaFour) {
+      setSendSugestion(true);
+    }
+  }, [areaOne, areaTwo, areaThree, areaFour]);
 
   return (
     <>
-      <Form parede = '1' addArea = { addArea } />
+    <div className="wall-container" >
+      <Wall parede = '1' addArea = { setAreaOne } />
       <br />
-      <Form parede = '2' addArea = { addArea } />
-      <h1>{ paintArea }</h1>
+      <Wall parede = '2' addArea = { setAreaTwo } />
+      <br />
+      <Wall parede = '3' addArea = { setAreaThree } />
+      <br />
+      <Wall parede = '4' addArea = { setAreaFour } />
+    </div>
+      {
+        sendSugestion
+          ? <Sugestion paintArea = { paintArea } />
+          : null
+      }
     </>
   );
 };

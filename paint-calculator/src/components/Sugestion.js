@@ -33,7 +33,7 @@ function Sugestion({ paintArea }) {
 
   return (
     <>
-      <ul>
+      <ul className="sugestions">
         { sugestions.map((sugestion, index) => {
           return <li key={ index } >{ sugestion }</li>
         }) }

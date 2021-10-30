@@ -28,7 +28,8 @@ function Wall({ parede, addArea }) {
     setArea(finalArea);
   }
 
-  function handleClick() {
+  function handleClick(e) {
+    e.target.innerText = 'Confirmado'
     addArea(area);
     setDisableForm(true);
     setDisabledDoor(true);
@@ -141,6 +142,7 @@ function Wall({ parede, addArea }) {
         <br />
         <br />
         <button
+          className = "confirm-btn"
           type='button'
           disabled = { disableButton }
           onClick = { handleClick }

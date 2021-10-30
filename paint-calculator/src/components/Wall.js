@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './wall.css';
+import './Wall.css';
 import { windowWidth, windowHeight, doorWidth, doorHeight } from '../utils';
 
 function Wall({ parede, addArea }) {
@@ -27,9 +27,9 @@ function Wall({ parede, addArea }) {
     }
     setArea(finalArea);
   }
+  console.log(area);
 
-  function handleClick(e) {
-    e.target.innerText = 'Confirmado'
+  function handleClick() {
     addArea(area);
     setDisableForm(true);
     setDisabledDoor(true);
@@ -141,6 +141,11 @@ function Wall({ parede, addArea }) {
         </label>
         <br />
         <br />
+        {
+          disableButton
+            ? <p>nao</p>
+            : <p>sim</p>
+        }
         <button
           className = "confirm-btn"
           type='button'

@@ -9,10 +9,10 @@ function PaintCalculator() {
   const [areaTwo, setAreaTwo] = useState();
   const [areaThree, setAreaThree] = useState();
   const [areaFour, setAreaFour] = useState();
-  // const [sendSugestion, setSendSugestion] = useState(true);
+  // const [sendSugestion, setSendSugestion] = useState(false);
 
   const paintArea = areaOne + areaTwo + areaThree + areaFour;
-console.log(paintArea);
+  console.log(paintArea);
 
   // useEffect(() => {
   //   if (areaOne && areaTwo && areaThree && areaFour) {

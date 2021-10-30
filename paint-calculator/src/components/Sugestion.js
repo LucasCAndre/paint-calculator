@@ -1,4 +1,5 @@
 import React from 'react';
+import './Sugestion.css';
 import { cansSizes, sqrMtrPerL } from '../utils';
 
 function Sugestion({ paintArea }) {

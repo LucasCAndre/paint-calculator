@@ -1,4 +1,5 @@
 import React from 'react';
+import './Sugestion.css';
 import { cansSizes, sqrMtrPerL } from '../utils';
 
 function Sugestion({ paintArea }) {
@@ -33,7 +34,7 @@ function Sugestion({ paintArea }) {
 
   return (
     <>
-      <ul>
+      <ul className="sugestions">
         { sugestions.map((sugestion, index) => {
           return <li key={ index } >{ sugestion }</li>
         }) }

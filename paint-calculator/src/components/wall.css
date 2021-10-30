@@ -1,7 +1,47 @@
 form {
-  background-color: antiquewhite;
+  /* border: solid 1px black; */
+  background-color: rgb(238, 238, 238);
+  padding: 20px;
+  /* border-radius: 5px; */
 }
 
 input {
-  border-radius: 20px;
+  border-radius: 10px;
+  width: 50px;
+  height: 20px;
+  text-align: center;
+}
+
+.wall {
+  border: solid 1px black;
+  background-color: #264653;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.wall h2 {
+  color: rgb(238, 238, 238);
+}
+
+.confirm-btn {
+  width: 164px;
+  height: 39px;
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-block;
+  letter-spacing: 1px;
+  position: relative;
+  padding: 7px 20px;
+}
+
+span {
+  color: red;
+  font-size: larger;
+  background-color: yellow;
 }

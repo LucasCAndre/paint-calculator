@@ -1,6 +1,16 @@
 .wall-container {
-  width: 60%;
+  /* width: 80%;
+  height: 450px; */
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  background-color: aqua;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-evenly;
+}
+
+.reload-btn {
+  width: 100px;
+  border-radius: 5px;
 }

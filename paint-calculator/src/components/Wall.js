@@ -42,14 +42,14 @@ function Wall({ parede, addArea }) {
   function checkHeight() {
     if ((height > 15 || height < 1) && height !== '') {
       setHideWarning(false);
-      setWarning('Altura deve estar entre 1 e 15 metros!!');
+      setWarning('Altura deve ter entre 1 e 15 metros!!');
     }
   };
 
   function checkWidth() {
     if ((width > 15 || width < 1) && width !== '') {
       setHideWarning(false);
-      setWarning('Largura deve estar entre 1 e 15 metros!!');
+      setWarning('Largura deve ter entre 1 e 15 metros!!');
     }
   };
 
@@ -95,6 +95,7 @@ function Wall({ parede, addArea }) {
         <label>
           Altura (m):
           <input
+            min="0"
             type= 'number'
             value = { height }
             onChange = { (e) => setHeight(e.target.value) }
@@ -106,7 +107,8 @@ function Wall({ parede, addArea }) {
         <br />
         <label>
           Largura (m):
-          <input 
+          <input
+            min="0"
             type= 'number'
             value = { width }
             onChange = { (e) => setWidth(e.target.value) }
@@ -119,6 +121,7 @@ function Wall({ parede, addArea }) {
         <label>
           Portas (qtd):
           <input
+            min="0"
             type= 'number'
             value = { doors }
             onChange = { (e) => setDoors(e.target.value) }
@@ -131,6 +134,7 @@ function Wall({ parede, addArea }) {
         <label>
           Janelas (qtd):
           <input
+            min="0"
             type= 'number'
             value = { windows }
             onChange = { (e) => setWindows(e.target.value) }
@@ -146,7 +150,12 @@ function Wall({ parede, addArea }) {
             : <FontAwesomeIcon className="checkIcon" icon={faCheck} />
         }
       </form>
-      <span hidden = { hideWarning }>{ warning }</span>
+      <span
+        hidden = { hideWarning }
+        className="warning"
+      >
+        { warning }
+      </span>
     </div>
   );
 };

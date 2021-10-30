@@ -1,7 +1,40 @@
 form {
-  background-color: antiquewhite;
+  border: solid 1px black;
+  background-color: rgb(223, 201, 201);
+  padding: 20px;
+  border-radius: 5px;
 }
 
 input {
   border-radius: 20px;
+  width: 55px;
+  height: 25px;
+}
+
+/* .wall {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+} */
+
+button {
+  width: 164px;
+  height: 39px;
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-block;
+  letter-spacing: 1px;
+  position: relative;
+  padding: 7px 20px;
+}
+
+span {
+  color: red;
+  font-size: larger;
+  background-color: yellow;
 }

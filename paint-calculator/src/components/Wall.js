@@ -46,14 +46,14 @@ function Wall({ parede, addArea }) {
   function checkHeight() {
     if ((height > 15 || height < 1) && height !== '') {
       setHideWarning(false);
-      setWarning('Altura não pode ser menor que 1 ou maior que 15 metros!!');
+      setWarning('Altura deve estar entre 1 e 15 metros!!');
     }
   };
 
   function checkWidth() {
     if ((width > 15 || width < 1) && width !== '') {
       setHideWarning(false);
-      setWarning('Largura não pode ser menor que 1 ou maior que 15 metros!!');
+      setWarning('Largura deve estar entre 1 e 15 metros!!');
     }
   };
 
@@ -87,11 +87,11 @@ function Wall({ parede, addArea }) {
   }, [height, width, doors, windows]);
   
   return (
-    <>
+    <div className="wall" >
       <h2>{ `Parede${parede}` }</h2>
       <form>
         <label>
-          Altura (m)
+          Altura (m):
           <input
             type= 'number'
             value = { height }
@@ -104,7 +104,7 @@ function Wall({ parede, addArea }) {
         <br />
         <br />
         <label>
-          Largura (m)
+          Largura (m):
           <input 
             type= 'number'
             value = { width }
@@ -117,7 +117,7 @@ function Wall({ parede, addArea }) {
         <br />
         <br />
         <label>
-          Portas (qtd)
+          Portas (qtd):
           <input
             type= 'number'
             value = { doors }
@@ -129,7 +129,7 @@ function Wall({ parede, addArea }) {
         <br />
         <br />
         <label>
-          Janelas (qtd)
+          Janelas (qtd):
           <input
             type= 'number'
             value = { windows }
@@ -149,7 +149,7 @@ function Wall({ parede, addArea }) {
         </button>
       </form>
       <span hidden = { hideWarning }>{ warning }</span>
-    </>
+    </div>
   );
 };
 

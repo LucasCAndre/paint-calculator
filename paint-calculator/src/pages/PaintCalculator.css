@@ -10,7 +10,8 @@
   justify-content: space-evenly;
 }
 
-.reload-btn {
+.reload-btn, .calculator-btn {
   width: 100px;
   border-radius: 5px;
+  margin: 10px;
 }

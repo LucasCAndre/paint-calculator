@@ -34,6 +34,7 @@ function Sugestion({ paintArea }) {
 
   return (
     <>
+      <h3>{ `Área total de ${Math.ceil(paintArea)} metros quadrados` }</h3>
       <ul className="sugestions">
         { sugestions.map((sugestion, index) => {
           return <li key={ index } >{ sugestion }</li>

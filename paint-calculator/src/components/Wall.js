@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './Wall.css';
 import { windowWidth, windowHeight, doorWidth, doorHeight } from '../utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faCheck } from '@fortawesome/free-solid-svg-icons'
+
+
 
 function Wall({ parede, addArea }) {
   const [height, setHeight] = useState('');
@@ -12,7 +16,6 @@ function Wall({ parede, addArea }) {
   const [disableDoor, setDisabledDoor] = useState(true);
   const [disableWindow, setDisabledWindow] = useState(true);
   const [disableButton, setDisableButton] = useState(true);
-  const [disableForm, setDisableForm] = useState(false);
   const [area, setArea] = useState(0);
 
   function totalArea() {
@@ -27,14 +30,6 @@ function Wall({ parede, addArea }) {
     }
     setArea(finalArea);
   }
-  console.log(area);
-
-  function handleClick() {
-    addArea(area);
-    setDisableForm(true);
-    setDisabledDoor(true);
-    setDisabledWindow(true);
-  };
 
   function checkButton() {
     if (!hideWarning || area === 0) {
@@ -75,6 +70,12 @@ function Wall({ parede, addArea }) {
   };
 
   useEffect(() => {
+    if (!disableButton) {
+      addArea(area);
+    }
+  }, [disableButton, area]);
+
+  useEffect(() => {
     checkButton();
   }, [hideWarning, height, width, totalArea]);
 
@@ -98,7 +99,6 @@ function Wall({ parede, addArea }) {
             value = { height }
             onChange = { (e) => setHeight(e.target.value) }
             placeholder = 'metros'
-            disabled = { disableForm }
             required
           />
         </label>
@@ -111,7 +111,6 @@ function Wall({ parede, addArea }) {
             value = { width }
             onChange = { (e) => setWidth(e.target.value) }
             placeholder = 'metros'
-            disabled = { disableForm }
             required
           />
         </label>
@@ -143,17 +142,9 @@ function Wall({ parede, addArea }) {
         <br />
         {
           disableButton
-            ? <p>nao</p>
-            : <p>sim</p>
+            ? null
+            : <FontAwesomeIcon className="checkIcon" icon={faCheck} />
         }
-        <button
-          className = "confirm-btn"
-          type='button'
-          disabled = { disableButton }
-          onClick = { handleClick }
-        >
-        Confirma
-        </button>
       </form>
       <span hidden = { hideWarning }>{ warning }</span>
     </div>

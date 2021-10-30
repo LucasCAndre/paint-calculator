@@ -9,20 +9,33 @@ function PaintCalculator() {
   const [areaTwo, setAreaTwo] = useState();
   const [areaThree, setAreaThree] = useState();
   const [areaFour, setAreaFour] = useState();
+  const [paintArea, setPaintArea] = useState();
   const [sendSugestion, setSendSugestion] = useState(false);
+  const [disableConfirmBtn, setDisableConfirmBtn] = useState(true);
 
-  const paintArea = areaOne + areaTwo + areaThree + areaFour;
-  console.log(paintArea);
-
-  useEffect(() => {
-    if (areaOne && areaTwo && areaThree && areaFour) {
-      setSendSugestion(true);
-    }
-  }, [areaOne, areaTwo, areaThree, areaFour]);
+  function handleSugestionClick() {
+    setSendSugestion(true);
+    const allArea = areaOne + areaTwo + areaThree + areaFour;
+    setPaintArea(allArea);
+  };
 
   function reloadClick() {
     window.location.reload();
   };
+
+  function disAbleBtn() {
+    const checkIcons = document.querySelectorAll('.checkIcon');
+    if (checkIcons.length === 4) {
+      setDisableConfirmBtn(false);
+    } else {
+      setDisableConfirmBtn(true);
+    }
+  };
+
+  useEffect(() => {
+    setSendSugestion(false);
+    disAbleBtn();
+  }, [areaOne, areaTwo, areaThree, areaFour]);
 
   return (
     <>
@@ -38,7 +51,18 @@ function PaintCalculator() {
       >
         Limpar tudo
       </button>
-      <Sugestion paintArea = { paintArea } />
+      <button
+        disabled = { disableConfirmBtn }
+        className="calculator-btn"
+        onClick={ handleSugestionClick }
+      >
+        Calcular
+      </button>
+      {
+        sendSugestion
+        ? <Sugestion paintArea = { paintArea } />
+        : null
+      }
       <Footer />
     </>
   );

@@ -17,11 +17,11 @@ function PaintCalculator() {
     setSendSugestion(true);
     const allArea = areaOne + areaTwo + areaThree + areaFour;
     setPaintArea(allArea);
-  };
+  }
 
   function reloadClick() {
     window.location.reload();
-  };
+  }
 
   function disAbleBtn() {
     const checkIcons = document.querySelectorAll('.checkIcon');
@@ -30,7 +30,7 @@ function PaintCalculator() {
     } else {
       setDisableConfirmBtn(true);
     }
-  };
+  }
 
   useEffect(() => {
     setSendSugestion(false);
@@ -39,33 +39,35 @@ function PaintCalculator() {
 
   return (
     <>
-      <div className="wall-container" >
-        <Wall parede = '1' addArea = { setAreaOne } />
-        <Wall parede = '2' addArea = { setAreaTwo } />
-        <Wall parede = '3' addArea = { setAreaThree } />
-        <Wall parede = '4' addArea = { setAreaFour } />
+      <div className="wall-container">
+        <Wall parede="1" addArea={setAreaOne} />
+        <Wall parede="2" addArea={setAreaTwo} />
+        <Wall parede="3" addArea={setAreaThree} />
+        <Wall parede="4" addArea={setAreaFour} />
       </div>
       <button
+        type="button"
         className="reload-btn"
-        onClick={ reloadClick }
+        onClick={reloadClick}
       >
         Limpar tudo
       </button>
       <button
-        disabled = { disableConfirmBtn }
+        type="button"
+        disabled={disableConfirmBtn}
         className="calculator-btn"
-        onClick={ handleSugestionClick }
+        onClick={handleSugestionClick}
       >
         Calcular
       </button>
       {
         sendSugestion
-        ? <Sugestion paintArea = { paintArea } />
-        : null
+          ? <Sugestion paintArea={paintArea} />
+          : null
       }
       <Footer />
     </>
   );
-};
+}
 
 export default PaintCalculator;

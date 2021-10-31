@@ -93,7 +93,7 @@ function Wall({ parede, addArea }) {
       <h2>{ `Parede ${parede}` }</h2>
       <form>
         <label>
-          Altura (m):
+          Altura (m): 
           <input
             min="0"
             type= 'number'
@@ -106,7 +106,7 @@ function Wall({ parede, addArea }) {
         <br />
         <br />
         <label>
-          Largura (m):
+          Largura (m): 
           <input
             min="0"
             type= 'number'
@@ -119,7 +119,7 @@ function Wall({ parede, addArea }) {
         <br />
         <br />
         <label>
-          Portas (qtd):
+          Portas (qtd): 
           <input
             min="0"
             type= 'number'
@@ -132,7 +132,7 @@ function Wall({ parede, addArea }) {
         <br />
         <br />
         <label>
-          Janelas (qtd):
+          Janelas (qtd): 
           <input
             min="0"
             type= 'number'

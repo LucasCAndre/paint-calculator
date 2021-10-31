@@ -17,14 +17,19 @@ function Sugestion({ paintArea }) {
   function calculator() {
     const sugestions = [];
     let areaToPaint = paintArea
-    cansSizes.forEach((can) => {
+    cansSizes.forEach((can, index) => {
       const {sqrMtrs, cansQuantity} = cans(areaToPaint, can);
       if (cansQuantity) {
-        const sugestion = cansQuantity === 1 
+        let sugestion = cansQuantity === 1 
           ? `${cansQuantity} lata de ${can}L`
           : `${cansQuantity} latas de ${can}L`
+        if (index === cansSizes.length -1 && sqrMtrs) {
+          sugestion = `${cansQuantity + 1} latas de ${can}L`;
+          areaToPaint = 0;
+        } else {
+          areaToPaint = sqrMtrs;
+        }
         sugestions.push(sugestion);
-        areaToPaint = sqrMtrs;
       }
     });
     return {sugestions, areaToPaint};
@@ -34,12 +39,13 @@ function Sugestion({ paintArea }) {
 
   return (
     <>
+      <h3>{ `Área total de ${Math.ceil(paintArea)} metros quadrados` }</h3>
       <ul className="sugestions">
         { sugestions.map((sugestion, index) => {
           return <li key={ index } >{ sugestion }</li>
         }) }
         { areaToPaint
-          ? <li>1 lata extra de 0,5L</li>
+          ? <li>1 lata de 0,5L</li>
           : null
         }
       </ul>

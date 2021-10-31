@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './wall.css';
+import './Wall.css';
 import { windowWidth, windowHeight, doorWidth, doorHeight } from '../utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faCheck } from '@fortawesome/free-solid-svg-icons'
+
+
 
 function Wall({ parede, addArea }) {
   const [height, setHeight] = useState('');
@@ -12,7 +16,6 @@ function Wall({ parede, addArea }) {
   const [disableDoor, setDisabledDoor] = useState(true);
   const [disableWindow, setDisabledWindow] = useState(true);
   const [disableButton, setDisableButton] = useState(true);
-  const [disableForm, setDisableForm] = useState(false);
   const [area, setArea] = useState(0);
 
   function totalArea() {
@@ -28,14 +31,6 @@ function Wall({ parede, addArea }) {
     setArea(finalArea);
   }
 
-  function handleClick(e) {
-    e.target.innerText = 'Confirmado'
-    addArea(area);
-    setDisableForm(true);
-    setDisabledDoor(true);
-    setDisabledWindow(true);
-  };
-
   function checkButton() {
     if (!hideWarning || area === 0) {
       setDisableButton(true);
@@ -47,14 +42,14 @@ function Wall({ parede, addArea }) {
   function checkHeight() {
     if ((height > 15 || height < 1) && height !== '') {
       setHideWarning(false);
-      setWarning('Altura deve estar entre 1 e 15 metros!!');
+      setWarning('Altura deve ter entre 1 e 15 metros!!');
     }
   };
 
   function checkWidth() {
     if ((width > 15 || width < 1) && width !== '') {
       setHideWarning(false);
-      setWarning('Largura deve estar entre 1 e 15 metros!!');
+      setWarning('Largura deve ter entre 1 e 15 metros!!');
     }
   };
 
@@ -75,6 +70,12 @@ function Wall({ parede, addArea }) {
   };
 
   useEffect(() => {
+    if (!disableButton) {
+      addArea(area);
+    }
+  }, [disableButton, area]);
+
+  useEffect(() => {
     checkButton();
   }, [hideWarning, height, width, totalArea]);
 
@@ -89,37 +90,38 @@ function Wall({ parede, addArea }) {
   
   return (
     <div className="wall" >
-      <h2>{ `Parede${parede}` }</h2>
+      <h2>{ `Parede ${parede}` }</h2>
       <form>
         <label>
-          Altura (m):
+          Altura (m): 
           <input
+            min="0"
             type= 'number'
             value = { height }
             onChange = { (e) => setHeight(e.target.value) }
             placeholder = 'metros'
-            disabled = { disableForm }
             required
           />
         </label>
         <br />
         <br />
         <label>
-          Largura (m):
-          <input 
+          Largura (m): 
+          <input
+            min="0"
             type= 'number'
             value = { width }
             onChange = { (e) => setWidth(e.target.value) }
             placeholder = 'metros'
-            disabled = { disableForm }
             required
           />
         </label>
         <br />
         <br />
         <label>
-          Portas (qtd):
+          Portas (qtd): 
           <input
+            min="0"
             type= 'number'
             value = { doors }
             onChange = { (e) => setDoors(e.target.value) }
@@ -130,8 +132,9 @@ function Wall({ parede, addArea }) {
         <br />
         <br />
         <label>
-          Janelas (qtd):
+          Janelas (qtd): 
           <input
+            min="0"
             type= 'number'
             value = { windows }
             onChange = { (e) => setWindows(e.target.value) }
@@ -141,16 +144,18 @@ function Wall({ parede, addArea }) {
         </label>
         <br />
         <br />
-        <button
-          className = "confirm-btn"
-          type='button'
-          disabled = { disableButton }
-          onClick = { handleClick }
-        >
-        Confirma
-        </button>
+        {
+          disableButton
+            ? null
+            : <FontAwesomeIcon className="checkIcon" icon={faCheck} />
+        }
       </form>
-      <span hidden = { hideWarning }>{ warning }</span>
+      <span
+        hidden = { hideWarning }
+        className="warning"
+      >
+        { warning }
+      </span>
     </div>
   );
 };

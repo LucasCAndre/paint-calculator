@@ -166,7 +166,7 @@ function Wall({ parede, addArea }) {
 }
 
 Wall.propTypes = {
-  parede: PropTypes.number.isRequired,
+  parede: PropTypes.string.isRequired,
   addArea: PropTypes.func.isRequired,
 };
 

@@ -4,7 +4,7 @@ import './Sugestion.css';
 import { cansSizes, sqrMtrPerL } from '../utils';
 
 function Sugestion({ paintArea }) {
-  function cans(sqrMtrs, canSize) {
+  function paintCan(sqrMtrs, canSize) {
     const areaPerCan = canSize * sqrMtrPerL;
     if (sqrMtrs < areaPerCan) {
       return { sqrMtrs };
@@ -17,14 +17,14 @@ function Sugestion({ paintArea }) {
   function calculator() {
     const sugestions = [];
     let areaToPaint = paintArea;
-    cansSizes.forEach((can, index) => {
-      const { sqrMtrs, cansQuantity } = cans(areaToPaint, can);
+    cansSizes.forEach((canSize, index) => {
+      const { sqrMtrs, cansQuantity } = paintCan(areaToPaint, canSize);
       if (cansQuantity) {
         let sugestion = cansQuantity === 1
-          ? `${cansQuantity} lata de ${can}L`
-          : `${cansQuantity} latas de ${can}L`;
+          ? `${cansQuantity} lata de ${canSize}L`
+          : `${cansQuantity} latas de ${canSize}L`;
         if (index === cansSizes.length - 1 && sqrMtrs) {
-          sugestion = `${cansQuantity + 1} latas de ${can}L`;
+          sugestion = `${cansQuantity + 1} latas de ${canSize}L`;
           areaToPaint = 0;
         } else {
           areaToPaint = sqrMtrs;

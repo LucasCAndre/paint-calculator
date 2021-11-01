@@ -14,7 +14,7 @@
   git clone git@github.com:LucasCAndre/paint-calculator.git
 ```
 
-3. Entre no diretorio raiz do projeto e Instale as dependencias do projeto:
+3. Entre no diretório raiz do projeto e instale as dependências do projeto:
 ```javascript
   cd paint-calculator
   npm install

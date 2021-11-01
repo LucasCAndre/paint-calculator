@@ -57,6 +57,7 @@ function Wall({ parede, addArea }) {
   function checkDoor() {
     if (height < doorHeight + 0.3 || !width) {
       setDisabledDoor(true);
+      setDoors(0);
     } else {
       setDisabledDoor(false);
     }
@@ -65,6 +66,7 @@ function Wall({ parede, addArea }) {
   function checkWindow() {
     if (width < windowWidth || width === '' || height < windowHeight || height === '') {
       setDisabledWindow(true);
+      setWindows(0);
     } else {
       setDisabledWindow(false);
     }
